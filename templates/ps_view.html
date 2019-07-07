@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html>
+  {% if session['ps'] %}
+<head>
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+}
+th {
+  text-align: center;
+}
+</style>
+</head>
+<body>
+
+<p>  Go to<a href="/ps_portal"> Paper Setter Home </a>  </p>
+<h2>Edit/Change Questions</h2>
+
+
+<table>
+    <col width="90">
+    <col width="700">
+    <col width="90">
+    <col width="100">
+    <col width="90">
+    <col width="95">
+    <col width="100">
+    <col width="50">
+    <col width="100">
+    <tr>
+    <th>Q no.</th>
+    <th>Question</th> 
+    <th>Option A</th>
+    <th>Option B</th>
+    <th>Option C</th>
+    <th>Option D</th>
+    <th>Correct Option</th>
+    <th>Marks</th>
+    <th>Edit</th>   
+
+    </tr>
+
+    {% for data in Qdata %}
+    <tr>
+        <td> {{data[0]}} </td>
+        <td> {{data[1]}} </td>
+        <td> {{data[2]}} </td>
+        <td> {{data[3]}} </td>
+        <td> {{data[4]}} </td>
+        <td> {{data[5]}} </td>
+        <td> {{data[6]}} </td>
+        <td> {{data[7]}} </td>
+        <td>
+          <form action="/edit_q" method="POST"> 
+          <button class="btn btn-primary" name = "edit" type="submit" value="{{data[0]}}" > Edit </button> 
+          </form>
+          <form action="/delete_q" method="POST">
+            <button class="btn btn-primary" name="delete" type="submit" value="{{data[0]}}" > Delete </button> 
+          </form>
+        </td>     
+
+    </tr>
+
+    {% endfor %}
+
+</body>
+{% else %}
+<h2>Unauthorized</h2>
+{% endif %}
+</html>

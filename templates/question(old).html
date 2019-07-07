@@ -1,0 +1,73 @@
+<html>
+<title> Test </title>
+{% if session['name'] %}
+
+{{session['q_no']}}) {{session['Q']}}
+<br>
+<br>
+<form action="" method="POST">
+
+<input type="radio" name = "option" value = "A"> {{session['A']}}
+<br>
+<input type="radio" name = "option" value = "B"> {{session['B']}}
+<br>
+<input type="radio" name = "option" value = "C"> {{session['C']}}
+<br>
+<input type="radio" name = "option" value = "D"> {{session['D']}}
+<br>
+<button type="submit" name="submit" >Submit</button>
+<br>
+<br>
+
+<input type="button" value="Prev" onclick="window.location.href='/prev'"/>
+<input type="button" value="Next" onclick="window.location.href='/next'"/>
+<br>
+<input type="button" value="Final Submit" onclick="window.location.href='/final_submit'"/>
+</form>
+
+<p id="demo"></p>
+
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date("{{eTime}}").getTime();
+var countDownStartDate = new Date("{{sTime}}").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get todays date and time
+  var now = new Date().getTime();
+
+  console.log(now, countDownStartDate);    //for testing on console
+  
+  if (countDownStartDate > now) {
+    window.location.href='/prohibited';
+  }
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the result in the element with id="demo"
+  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+
+  // If the count down is finished, write some text
+  if (distance < 0) {
+    clearInterval(x);
+    window.location.href='final_submit';
+  }
+}, 1000);
+</script>
+
+
+{% else %}
+
+<h2> Please Login First </h2>
+
+{% endif %}
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+}
+th {
+  text-align: center;
+}
+</style>
+</head>
+<body>
+
+<p>  To go to<a href="/"> Home </a>  </p>
+<h2>Leaderboard</h2>
+
+
+<table>
+    <col width="50">
+    <col width="400">
+    <col width="300">
+    <col width="50">
+    <tr>
+    <th>Rank</th>
+    <th>Name</th> 
+    <th>Username</th>
+    <th>Marks</th>
+
+    </tr>
+
+    {% for row in data %}
+    <tr>
+        <td> {{row[4]}} </td>
+        <td> {{row[2]}} {{row[3]}}</td>
+        <td> {{row[0]}} </td>
+        <td> {{row[1]}} </td>
+
+    </tr>
+
+    {% endfor %}
+
+</body>
+</html>

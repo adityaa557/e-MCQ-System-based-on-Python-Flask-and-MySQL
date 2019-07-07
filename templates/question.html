@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Question Page</title>
+		<link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+		<!-- Bulma Version 0.7.4-->
+		<link rel="stylesheet" href="https://unpkg.com/bulma@0.7.4/css/bulma.min.css" />
+	</head>
+	<style type="text/css">
+html,body {
+  font-family: 'Open Sans', serif;
+ background: rgb(244, 244, 247); 
+}
+article.post {
+  margin: 1rem;
+  padding-bottom: 1rem;
+}
+.qstnCard{
+	padding-top: 4%;
+	padding-bottom: 1%;
+}
+.qustnOptions {
+	padding-left: 4%;
+	font-size: 20px;
+}
+.qustnOption{
+	padding-top: 2%;
+	padding-bottom: 1%;
+}
+.sumbitQstn{
+	padding-top: 2%;
+	text-align: center;
+}
+.qustnFoot{
+	padding-top: 2%;
+}
+.baseOption{
+	text-align: center;
+}
+.timeLeft{
+	padding-top: 2%;
+}
+.pageFooter{
+	text-align: right;
+	padding-bottom: 2%;
+}
+.abc{
+	text-align: right;
+}
+	</style>
+	<body>
+			
+
+		<section class="container">
+			<div class="columns qstnCard">
+				<div class="column">
+					<div class="box content">
+						<article class="post">
+							<h3>{{session['q_no']}}. {{session['Q']}}</h3>
+							<form action="" method="POST">
+							<div class="qustnOptions">
+									<div class="qustnOption">
+									<label class="checkbox">
+									<input type="radio" name = "option" value = "A"> {{session['A']}}
+									</label>
+									</div>
+									<div class="qustnOption">
+									<label class="checkbox">
+									<input type="radio" name = "option" value = "B"> {{session['B']}} 
+									</label>
+									</div>
+									<div class="qustnOption">
+									<label class="checkbox">
+									<input type="radio" name = "option" value = "C"> {{session['C']}}
+									</label>
+									</div>
+									<div class="qustnOption">
+									<label class="checkbox">
+									<input type="radio" name = "option" value = "D"> {{session['D']}}
+									</label>
+									</div>
+							</div>
+							<div class="abc">
+								<h4><b> ( {{session['q_mark']}} marks )</b></h4>
+								
+							</div>
+							<div class="sumbitQstn">
+								<button type="submit" name="submit" >Submit</button>
+							</div>
+							</form>
+							<div class="columns qustnFoot">
+								<div class="column is-3 baseOption">
+										<a class="button is-info is-outlined is-rounded is-medium" href="/prev"> Prev</a>
+								</div>
+								<div class="column is-6 baseOption">
+									<div class="timeLeft">
+										<h4><p id="demo"></p></h4>
+									</div>
+								</div>
+								<div class="column is-3 baseOption">
+										<a class="button is-info is-outlined is-rounded is-medium" href="/next"> Next</a>
+								</div>
+								
+							</div>
+						</article>
+					</div>
+				</div>
+			</div>
+
+			<div>
+					<progress class="progress is-large is-primary" value="{{session['q_no']}}" max="{{total_Q}}"> </progress>
+					<div class="abc">
+							<h3><b>( {{session['q_no']}} out of {{total_Q}} )</b> </h3>
+					</div>
+					<br>
+			</div>
+
+			<div class="pageFooter">
+					<a class="button is-danger is-medium" href="/final_submit"> Final Submit</a>
+			</div>
+		</section>
+		<script async type="text/javascript" src="../js/bulma.js"></script>
+	</body>
+	<script>
+	</script>
+
+	<script>
+	// Set the date we're counting down to
+	var countDownDate = new Date("{{eTime}}").getTime();
+	var countDownStartDate = new Date("{{sTime}}").getTime();
+	
+	// Update the count down every 1 second
+	var x = setInterval(function() {
+	
+	  // Get todays date and time
+	  var now = new Date().getTime();
+	
+	  console.log(now, countDownStartDate);    //for testing on console
+	  
+	  if (countDownStartDate > now) {
+		window.location.href='/prohibited';
+	  }
+	  // Find the distance between now and the count down date
+	  var distance = countDownDate - now;
+	
+	  // Time calculations for days, hours, minutes and seconds
+	  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+	  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+	  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+	  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+	
+	  // Display the result in the element with id="demo"
+	  document.getElementById("demo").innerHTML = hours + "h "
+	  + minutes + "m " + seconds + "s ";
+	
+	  // If the count down is finished, write some text
+	  if (distance < 0) {
+		clearInterval(x);
+		window.location.href='final_submit';
+	  }
+	}, 1000);
+	</script>
+</html>

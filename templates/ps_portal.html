@@ -1,0 +1,107 @@
+
+
+
+
+{% extends 'layout.html' %}
+
+
+
+
+{% block title %} Add Question {% endblock %}
+
+
+
+
+{% block content %}
+
+
+
+
+ <div class="container">
+
+
+ <div class="row">
+
+
+ <div class="col-md-6 col-md-offset-3">
+
+
+ <form action="/ps_portal" method="POST">
+
+
+ <div class="form-group">
+
+
+ <label>Q No.: </label>
+
+ <input type="text" class="form-control" name="q_no" value="{{total}}">
+
+ <label>Question:</label>
+
+
+ <input type="text" class="form-control" name="question" >
+
+
+ <label>Option A:</label>
+
+
+ <input type="text" class="form-control" name="A">
+
+ <label>Option B:</label>
+
+
+ <input type="text" class="form-control" name="B">
+
+
+ <label>Option C:</label>
+
+
+ <input type="text" class="form-control" name="C">
+
+
+ <label>Option D:</label>
+
+
+ <input type="text" class="form-control" name="D">
+
+ <label>Correct Option:</label>
+
+
+ <input type="text" class="form-control" name="Correct_answer">
+
+ <label>Marks:</label>
+
+
+ <input type="text" class="form-control" name="marks">
+
+
+ <br>
+
+ <button class="btn btn-primary" type="submit">Submit</button>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+
+
+ </div>
+
+
+ </form>
+
+ <form action="/reset_lb" method="POST">
+    <button type="submit">Reset Leaderboard</button>
+</form>
+ </div>
+
+
+ </div>
+
+
+</div>
+
+
+{% endblock %}
+
