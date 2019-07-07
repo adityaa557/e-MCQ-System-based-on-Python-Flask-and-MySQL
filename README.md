@@ -3,6 +3,7 @@ The e-MCQ system is a platform to aid in the conduction online quizes . This pla
 
 
 Back-end Technologies : Python Flask, MySQL
+
 Front-end Technologies : HTML, CSS, JavaScript, Jinja Template
  
 Author : ADITYA ANAND , INDIAN INSTITUTE OF INFROMATION TECHNOLOGY ALLAHABAD , 2019
